@@ -62,7 +62,20 @@ public class Bai6_MenuDonGian extends JFrame {
         setJMenuBar(menuBar);
 
         miExit.addActionListener(e -> System.exit(0));
-        miHelp.addActionListener(e -> JOptionPane.showMessageDialog(this, "Chọn menu Open để thực hiện các bài tập.\nBài 3: Đăng nhập hệ thống.\nBài 4: Quản lý sinh viên.", "Hướng dẫn", JOptionPane.INFORMATION_MESSAGE));
+        miHelp.addActionListener(e -> JOptionPane.showMessageDialog(this,
+                "HƯỚNG DẪN MENU\n" +
+                "- File: Exit để thoát chương trình.\n" +
+                "- Open: Chọn bài tập muốn thực hiện.\n" +
+                "  + Bài 1: Form thông tin cá nhân\n" +
+                "  + Bài 2: Cộng Trừ Nhân Chia\n" +
+                "  + Bài 3: Đăng nhập hệ thống\n" +
+                "  + Bài 4: Quản lý sinh viên\n" +
+                "  + Bài 7: Paint đơn giản\n" +
+                "  + Bài 8: Quiz trắc nghiệm\n" +
+                "  + Bài 9: Quản lý SV đơn giản\n" +
+                "  + Bài 10: Quản lý sản phẩm\n" +
+                "- Help: Xem hướng dẫn sử dụng menu và chức năng các bài.\n",
+                "Hướng dẫn sử dụng menu", JOptionPane.INFORMATION_MESSAGE));
         miBai1.addActionListener(e -> new Bai1_FormThongTin().setVisible(true));
         miBai2.addActionListener(e -> new Bai2_CongTruNhanChia().setVisible(true));
         miBai3.addActionListener(e -> new Bai3_FormLogin().setVisible(true));

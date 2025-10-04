@@ -70,12 +70,18 @@ public class Bai8_QuizTracNghiem extends JFrame {
                 JOptionPane.showMessageDialog(this, "Vui lòng chọn đáp án!", "Thông báo", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            if (ans == correct[current]) score++;
+            if (ans == correct[current]) {
+                JOptionPane.showMessageDialog(this, "Chính xác! Chúc mừng bạn", "Kết quả", JOptionPane.INFORMATION_MESSAGE);
+                score++;
+            } else {
+                JOptionPane.showMessageDialog(this, "Sai rồi!", "Kết quả", JOptionPane.ERROR_MESSAGE);
+            }
             current++;
             if (current < questions.length) {
                 showQuestion();
             } else {
                 int diem = (int)Math.round(score*10.0/questions.length);
+                JOptionPane.showMessageDialog(this, "Bạn đã hoàn thành!\nĐiểm của bạn: " + diem + "/10", "Kết quả", JOptionPane.INFORMATION_MESSAGE);
                 lblScore.setText("Điểm của bạn: " + diem + "/10");
                 btnNext.setEnabled(false);
             }
@@ -91,4 +97,3 @@ public class Bai8_QuizTracNghiem extends JFrame {
         SwingUtilities.invokeLater(() -> new Bai8_QuizTracNghiem().setVisible(true));
     }
 }
-
