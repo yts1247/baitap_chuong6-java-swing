@@ -10,67 +10,73 @@ public class Bai3_FormLogin extends JFrame {
 
     public Bai3_FormLogin() {
         setTitle("Đăng nhập hệ thống");
-        setSize(400, 250);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        Font font = new Font("Segoe UI", Font.PLAIN, 18);
+        Font font = new Font("Segoe UI", Font.BOLD, 18);
         Color bgColor = new Color(240, 245, 255);
         getContentPane().setBackground(bgColor);
 
+        JLabel lblTitle = new JLabel("ĐĂNG NHẬP HỆ THỐNG");
+        lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 22));
+        lblTitle.setForeground(new Color(40, 60, 120));
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2; gbc.insets = new Insets(18, 0, 18, 0); gbc.anchor = GridBagConstraints.CENTER;
+        add(lblTitle, gbc);
+        gbc.gridwidth = 1;
+
         JLabel lblUser = new JLabel("Tên đăng nhập:");
         lblUser.setFont(font);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(15, 15, 5, 5);
-        gbc.anchor = GridBagConstraints.WEST;
+        lblUser.setForeground(new Color(40, 60, 120));
+        gbc.gridx = 0; gbc.gridy = 1; gbc.insets = new Insets(8, 18, 8, 8); gbc.anchor = GridBagConstraints.EAST;
         add(lblUser, gbc);
 
-        txtUser = new JTextField(16);
+        txtUser = new JTextField(20);
         txtUser.setFont(font);
         txtUser.setBackground(Color.WHITE);
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(15, 0, 5, 15);
+        txtUser.setBorder(BorderFactory.createLineBorder(new Color(180, 200, 240), 2));
+        gbc.gridx = 1; gbc.gridy = 1; gbc.insets = new Insets(8, 0, 8, 18); gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
         add(txtUser, gbc);
+        gbc.fill = GridBagConstraints.NONE; gbc.weightx = 0;
 
         JLabel lblPass = new JLabel("Mật khẩu:");
         lblPass.setFont(font);
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(5, 15, 5, 5);
+        lblPass.setForeground(new Color(40, 60, 120));
+        gbc.gridx = 0; gbc.gridy = 2; gbc.insets = new Insets(8, 18, 8, 8); gbc.anchor = GridBagConstraints.EAST;
         add(lblPass, gbc);
 
-        txtPass = new JPasswordField(16);
+        txtPass = new JPasswordField(20);
         txtPass.setFont(font);
         txtPass.setBackground(Color.WHITE);
-        gbc.gridx = 1;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(5, 0, 5, 15);
+        txtPass.setBorder(BorderFactory.createLineBorder(new Color(180, 200, 240), 2));
+        gbc.gridx = 1; gbc.gridy = 2; gbc.insets = new Insets(8, 0, 8, 18); gbc.anchor = GridBagConstraints.WEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weightx = 1.0;
         add(txtPass, gbc);
+        gbc.fill = GridBagConstraints.NONE; gbc.weightx = 0;
 
         btnLogin = new JButton("Đăng nhập");
         btnLogin.setFont(font);
         btnLogin.setBackground(new Color(100, 180, 255));
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setFocusPainted(false);
-        btnLogin.setPreferredSize(new Dimension(130, 36));
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(20, 15, 10, 5);
-        add(btnLogin, gbc);
+        btnLogin.setBorder(BorderFactory.createLineBorder(new Color(80, 140, 220), 2));
+        btnLogin.setPreferredSize(new Dimension(130, 38));
 
         btnExit = new JButton("Thoát");
         btnExit.setFont(font);
         btnExit.setBackground(new Color(255, 140, 140));
         btnExit.setForeground(Color.WHITE);
         btnExit.setFocusPainted(false);
-        btnExit.setPreferredSize(new Dimension(130, 36));
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(20, 0, 10, 15);
-        add(btnExit, gbc);
+        btnExit.setBorder(BorderFactory.createLineBorder(new Color(220, 80, 80), 2));
+        btnExit.setPreferredSize(new Dimension(130, 38));
+
+        JPanel pnlButtons = new JPanel(new FlowLayout(FlowLayout.CENTER, 24, 0));
+        pnlButtons.setOpaque(false);
+        pnlButtons.add(btnLogin);
+        pnlButtons.add(btnExit);
+        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2; gbc.insets = new Insets(18, 0, 18, 0); gbc.anchor = GridBagConstraints.CENTER;
+        add(pnlButtons, gbc);
+        gbc.gridwidth = 1;
 
         btnLogin.addActionListener(e -> {
             String user = txtUser.getText().trim();
@@ -83,6 +89,10 @@ public class Bai3_FormLogin extends JFrame {
         });
 
         btnExit.addActionListener(e -> System.exit(0));
+
+        pack();
+        setLocationRelativeTo(null);
+        txtUser.requestFocusInWindow();
     }
 
     public static void main(String[] args) {

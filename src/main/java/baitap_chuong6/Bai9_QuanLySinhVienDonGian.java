@@ -4,125 +4,87 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class Bai4_QuanLySinhVien extends JFrame {
+public class Bai9_QuanLySinhVienDonGian extends JFrame {
     private DefaultTableModel model;
-    public Bai4_QuanLySinhVien() {
-        setTitle("Bài 4 - Quản lý sinh viên");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    public Bai9_QuanLySinhVienDonGian() {
+        setTitle("Bài 9 - Quản lý sinh viên đơn giản");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(600, 400);
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         getContentPane().setBackground(new Color(240, 245, 255));
-
         Font font = new Font("Segoe UI", Font.BOLD, 16);
         Font fontInput = new Font("Segoe UI", Font.PLAIN, 15);
-        Color colorBtn = new Color(100, 180, 255);
-        Color colorDel = new Color(255, 140, 140);
-        Color colorTable = new Color(235, 245, 255);
-
-        model = new DefaultTableModel(new Object[] {"Mã SV","Họ tên","Lớp","Giới tính"},0) {
+        model = new DefaultTableModel(new Object[] {"Mã SV","Họ tên","Tuổi","Lớp"},0) {
             @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
+            public boolean isCellEditable(int row, int column) { return false; }
         };
         JTable table = new JTable(model);
         table.setFont(fontInput);
         table.getTableHeader().setFont(font);
         table.setRowHeight(28);
-        table.setBackground(colorTable);
+        table.setBackground(new Color(235, 245, 255));
         table.setFillsViewportHeight(true);
         JScrollPane scroll = new JScrollPane(table);
         scroll.setBorder(BorderFactory.createLineBorder(new Color(180, 200, 240), 2));
         add(scroll, BorderLayout.CENTER);
-
         JPanel p = new JPanel(new GridBagLayout());
         p.setBackground(new Color(240, 245, 255));
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(6, 8, 6, 8);
         gbc.anchor = GridBagConstraints.WEST;
-
-        JLabel lblMa = new JLabel("Mã:"); lblMa.setFont(font);
+        JLabel lblMa = new JLabel("Mã SV:"); lblMa.setFont(font);
         gbc.gridx = 0; gbc.gridy = 0; p.add(lblMa, gbc);
         JTextField txtMa = new JTextField(8); txtMa.setFont(fontInput);
         txtMa.setBorder(BorderFactory.createLineBorder(new Color(180, 200, 240), 2));
         gbc.gridx = 1; gbc.gridy = 0; p.add(txtMa, gbc);
-
         JLabel lblTen = new JLabel("Họ tên:"); lblTen.setFont(font);
         gbc.gridx = 2; gbc.gridy = 0; p.add(lblTen, gbc);
         JTextField txtTen = new JTextField(14); txtTen.setFont(fontInput);
         txtTen.setBorder(BorderFactory.createLineBorder(new Color(180, 200, 240), 2));
         gbc.gridx = 3; gbc.gridy = 0; p.add(txtTen, gbc);
-
+        JLabel lblTuoi = new JLabel("Tuổi:"); lblTuoi.setFont(font);
+        gbc.gridx = 4; gbc.gridy = 0; p.add(lblTuoi, gbc);
+        JTextField txtTuoi = new JTextField(4); txtTuoi.setFont(fontInput);
+        txtTuoi.setBorder(BorderFactory.createLineBorder(new Color(180, 200, 240), 2));
+        gbc.gridx = 5; gbc.gridy = 0; p.add(txtTuoi, gbc);
         JLabel lblLop = new JLabel("Lớp:"); lblLop.setFont(font);
-        gbc.gridx = 4; gbc.gridy = 0; p.add(lblLop, gbc);
+        gbc.gridx = 6; gbc.gridy = 0; p.add(lblLop, gbc);
         JTextField txtLop = new JTextField(10); txtLop.setFont(fontInput);
         txtLop.setBorder(BorderFactory.createLineBorder(new Color(180, 200, 240), 2));
-        gbc.gridx = 5; gbc.gridy = 0; p.add(txtLop, gbc);
-
-        JRadioButton rdNam = new JRadioButton("Nam");
-        JRadioButton rdNu = new JRadioButton("Nữ");
-        rdNam.setFont(fontInput); rdNu.setFont(fontInput);
-        rdNam.setBackground(new Color(240, 245, 255));
-        rdNu.setBackground(new Color(240, 245, 255));
-        ButtonGroup g = new ButtonGroup(); g.add(rdNam); g.add(rdNu);
-        gbc.gridx = 6; gbc.gridy = 0; p.add(rdNam, gbc);
-        gbc.gridx = 7; gbc.gridy = 0; p.add(rdNu, gbc);
-
+        gbc.gridx = 7; gbc.gridy = 0; p.add(txtLop, gbc);
         JButton btnAdd = new JButton("Thêm");
         btnAdd.setFont(font);
-        btnAdd.setBackground(colorBtn);
+        btnAdd.setBackground(new Color(100, 180, 255));
         btnAdd.setForeground(Color.WHITE);
         btnAdd.setFocusPainted(false);
         btnAdd.setBorder(BorderFactory.createLineBorder(new Color(80, 140, 220), 2));
         gbc.gridx = 8; gbc.gridy = 0; p.add(btnAdd, gbc);
-
-        JButton btnDel = new JButton("Xóa");
+        JButton btnDel = new JButton("Xóa dòng chọn");
         btnDel.setFont(font);
-        btnDel.setBackground(colorDel);
+        btnDel.setBackground(new Color(255, 140, 140));
         btnDel.setForeground(Color.WHITE);
         btnDel.setFocusPainted(false);
         btnDel.setBorder(BorderFactory.createLineBorder(new Color(220, 80, 80), 2));
         gbc.gridx = 9; gbc.gridy = 0; p.add(btnDel, gbc);
-
-        JButton btnDelAll = new JButton("Xóa tất cả");
-        btnDelAll.setFont(font);
-        btnDelAll.setBackground(new Color(180, 180, 180));
-        btnDelAll.setForeground(Color.WHITE);
-        btnDelAll.setFocusPainted(false);
-        btnDelAll.setBorder(BorderFactory.createLineBorder(new Color(120, 120, 120), 2));
-        gbc.gridx = 10; gbc.gridy = 0; p.add(btnDelAll, gbc);
-
         add(p, BorderLayout.NORTH);
-
         btnAdd.addActionListener(e -> {
-            String gt = rdNam.isSelected()? "Nam": rdNu.isSelected()? "Nữ": "";
-            if (txtMa.getText().isEmpty() || txtTen.getText().isEmpty() || txtLop.getText().isEmpty() || gt.isEmpty()) {
+            if (txtMa.getText().isEmpty() || txtTen.getText().isEmpty() || txtTuoi.getText().isEmpty() || txtLop.getText().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin!", "Lỗi nhập liệu", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            model.addRow(new Object[] {txtMa.getText(), txtTen.getText(), txtLop.getText(), gt});
-            txtMa.setText(""); txtTen.setText(""); txtLop.setText(""); g.clearSelection();
+            model.addRow(new Object[] {txtMa.getText(), txtTen.getText(), txtTuoi.getText(), txtLop.getText()});
+            txtMa.setText(""); txtTen.setText(""); txtTuoi.setText(""); txtLop.setText("");
             txtMa.requestFocus();
         });
-
         btnDel.addActionListener(e -> {
             int r = table.getSelectedRow();
             if (r>=0) model.removeRow(r);
             else JOptionPane.showMessageDialog(this, "Chọn dòng để xóa", "Thông báo", JOptionPane.WARNING_MESSAGE);
         });
-
-        btnDelAll.addActionListener(e -> {
-            if (model.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(this, "Không có dữ liệu để xóa!", "Thông báo", JOptionPane.WARNING_MESSAGE);
-                return;
-            }
-            int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa tất cả?", "Xác nhận", JOptionPane.YES_NO_OPTION);
-            if (confirm == JOptionPane.YES_OPTION) {
-                model.setRowCount(0);
-            }
-        });
     }
-
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new Bai4_QuanLySinhVien().setVisible(true));
+        SwingUtilities.invokeLater(() -> new Bai9_QuanLySinhVienDonGian().setVisible(true));
     }
 }
+
